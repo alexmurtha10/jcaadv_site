@@ -100,13 +100,15 @@ img {
 
 .hero-media {
   position: relative;
+  height: 600px;
 }
 
 .hero-media img {
   width: 100%;
-  height: 560px;
+  height: 600px;
   object-fit: cover;
   border-radius: 6px;
+  border: 7px solid #16324f;
 }
 
 /* Decorative diagonal line accents, echoing the original layout */
@@ -155,6 +157,23 @@ img {
 
   .btn {
     width: 100%;
+  }
+}
+
+/* Desktop: hero ocupa 100vh menos a altura real do header (definida via JS em --header-height) */
+@media (min-width: 961px) {
+  .hero {
+    min-height: calc(100vh - var(--header-height, 96px));
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-container {
+    width: 100%;
+  }
+
+  .hero-media img {
+    height: 100%;
   }
 }
 
@@ -721,7 +740,7 @@ img {
 }
 
 .differential-item:hover {
-  border-color: #c98a4b;
+  border-color: #16324f;
   transform: translateY(-3px);
   box-shadow: 0 14px 30px -18px rgba(22, 50, 79, 0.25);
 }
@@ -732,9 +751,9 @@ img {
   justify-content: center;
   width: 48px;
   height: 48px;
-  border: 1px solid rgba(201, 138, 75, 0.35);
+  border: 1px solid rgba(22, 50, 79, 0.2);
   border-radius: 4px;
-  color: #c98a4b;
+  color: #16324f;
   margin-bottom: 20px;
 }
 

@@ -132,7 +132,7 @@
                         <h3>BPC/LOAS e Benefícios Previdenciários</h3>
                         <p>Atuação em BPC/LOAS, aposentadorias, benefícios por incapacidade e demais demandas
                             previdenciárias contra o INSS.</p>
-                        <a href="#contato" class="area-link">Saiba Mais</a>
+
                     </article>
 
                     <article class="area-card">
@@ -151,7 +151,7 @@
                         <h3>Policiais Rodoviários Federais</h3>
                         <p>Atuação especializada em direitos funcionais e remuneratórios de PRFs, com análise técnica
                             das particularidades da carreira.</p>
-                        <a href="#contato" class="area-link">Saiba Mais</a>
+
                     </article>
 
                     <article class="area-card">
@@ -165,7 +165,7 @@
                         </div>
                         <h3>Servidores Públicos</h3>
                         <p>Progressão funcional, curso de formação, auxílio-transporte e diferenças remuneratórias.</p>
-                        <a href="#contato" class="area-link">Saiba Mais</a>
+
                     </article>
 
                     <article class="area-card">
@@ -178,7 +178,7 @@
                         </div>
                         <h3>Direito Cível</h3>
                         <p>Demandas cíveis, contratuais e bancárias, com orientação jurídica individualizada.</p>
-                        <a href="#contato" class="area-link">Saiba Mais</a>
+
                     </article>
 
                     <article class="area-card">
@@ -194,7 +194,7 @@
                         <h3>Direito do Trabalho</h3>
                         <p>Atuação na fase de conhecimento e na execução, do planejamento ao acompanhamento processual.
                         </p>
-                        <a href="#contato" class="area-link">Saiba Mais</a>
+
                     </article>
 
                     <article class="area-card">
@@ -210,10 +210,10 @@
                                 <path d="M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4" />
                             </svg>
                         </div>
-                        <h3>DDireito de Família</h3>
+                        <h3>Direito de Família</h3>
                         <p>Orientação jurídica individualizada e atuação em demandas familiares com atendimento
                             cuidadoso.</p>
-                        <a href="#contato" class="area-link">Saiba Mais</a>
+
                     </article>
                 </div>
             </div>
@@ -237,6 +237,11 @@
                         Experiência em recursos perante Tribunais Regionais Federais
                         e Tribunais Superiores, incluindo <strong>STJ e TST</strong>.
                     </p>
+
+                    <a href="#contato" class="btn btn-cta">
+                        Fale com um Advogado
+                    </a>
+                </div>
 
             </div>
         </section>
@@ -317,7 +322,8 @@
                                 </span>
                                 <div>
                                     <span class="contact-info-label">Telefone / WhatsApp</span>
-                                    <a href="https://wa.me/5521981651042" target="_blank" rel="noopener">(21) 98165-1042</a>
+                                    <a href="https://wa.me/5521981651042" target="_blank" rel="noopener">(21)
+                                        98165-1042</a>
                                 </div>
                             </li>
 
@@ -346,7 +352,8 @@
                                 </span>
                                 <div>
                                     <span class="contact-info-label">Endereço</span>
-                                    <span class="contact-info-text">Avenida XXXXX, 0000 - Sala X<br />Teresópolis, RJ</span>
+                                    <span class="contact-info-text">Avenida XXXXX, 0000 - Sala X<br />Teresópolis,
+                                        RJ</span>
                                 </div>
                             </li>
 
@@ -421,8 +428,22 @@
             .then((html) => {
                 document.getElementById("header-placeholder").innerHTML = html;
                 initMenuToggle();
+                updateHeaderHeightVar();
             })
             .catch((err) => console.error("Erro ao carregar o header:", err));
+
+        // Mede a altura real do header e expõe como --header-height,
+        // usada pelo .hero para fechar 100vh (header + hero) no desktop
+        function updateHeaderHeightVar() {
+            const headerPlaceholder = document.getElementById("header-placeholder");
+            if (!headerPlaceholder) return;
+            document.documentElement.style.setProperty(
+                "--header-height",
+                headerPlaceholder.offsetHeight + "px"
+            );
+        }
+
+        window.addEventListener("resize", updateHeaderHeightVar);
 
         // Carrega o footer.html dentro do #footer-placeholder
         fetch("/components/footer.html")
