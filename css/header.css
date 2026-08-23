@@ -1,5 +1,5 @@
 /* ===== HEADER ===== */
-.site-header {
+.hdr {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -7,7 +7,7 @@
   border-bottom: 1px solid #ececec;
 }
 
-.header-container {
+.hdr-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 18px 40px;
@@ -18,27 +18,26 @@
 }
 
 /* Logo */
-.logo {
+.hdr-logo {
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
 }
 
-.logo-icon {
+.hdr-logo-icon {
   height: 60px;
   width: 60px;
   object-fit: contain;
 }
 
-.logo-text {
+.hdr-logo-text {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
 }
 
-
-.logo-name {
+.hdr-logo-name {
   font-family: "Playfair Display", serif;
   font-size: 22px;
   font-weight: 700;
@@ -46,7 +45,7 @@
   letter-spacing: 0.5px;
 }
 
-.logo-tagline {
+.hdr-logo-tagline {
   font-family: "Poppins", sans-serif;
   font-size: 9px;
   font-weight: 500;
@@ -56,13 +55,13 @@
 }
 
 /* Nav */
-.main-nav {
+.hdr-nav {
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.main-nav ul {
+.hdr-nav ul {
   display: flex;
   list-style: none;
   gap: 36px;
@@ -70,7 +69,7 @@
   padding: 0;
 }
 
-.main-nav a {
+.hdr-nav a {
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -81,19 +80,59 @@
   transition: color 0.2s ease;
 }
 
-.main-nav a:hover,
-.main-nav a:focus-visible {
+.hdr-nav a:hover,
+.hdr-nav a:focus-visible {
   color: #c98a4b;
 }
 
-/* CTA button in header */
-.header-cta {
+/* Botão do header — independente do .btn do index.css */
+.hdr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 26px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: #16324f;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hdr-btn:hover {
+  background: #0e2237;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -14px rgba(22, 50, 79, 0.35);
+}
+
+.hdr-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* CTA no desktop */
+.hdr-cta {
   flex-shrink: 0;
   white-space: nowrap;
 }
 
-/* Mobile menu toggle */
-.menu-toggle {
+/* CTA duplicado dentro do menu — só aparece no mobile */
+.hdr-nav-cta-item {
+  display: none;
+}
+
+.hdr-btn--nav {
+  width: 100%;
+}
+
+/* Botão de abrir menu mobile */
+.hdr-toggle {
   display: none;
   flex-direction: column;
   justify-content: space-between;
@@ -105,7 +144,7 @@
   padding: 0;
 }
 
-.menu-toggle span {
+.hdr-toggle span {
   display: block;
   height: 2px;
   width: 100%;
@@ -115,7 +154,7 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 960px) {
-  .main-nav {
+  .hdr-nav {
     position: absolute;
     top: 100%;
     left: 0;
@@ -125,28 +164,33 @@
     display: none;
   }
 
-  .main-nav.open {
+  .hdr-nav.open {
     display: block;
   }
 
-  .main-nav ul {
+  .hdr-nav ul {
     flex-direction: column;
     align-items: center;
     gap: 20px;
     padding: 24px 0;
   }
 
-  .header-cta {
+  .hdr-cta {
     display: none;
   }
 
-  .menu-toggle {
+  .hdr-nav-cta-item {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .hdr-toggle {
     display: flex;
   }
 }
 
 @media (max-width: 600px) {
-  .header-container {
+  .hdr-container {
     padding: 16px 20px;
   }
 }
