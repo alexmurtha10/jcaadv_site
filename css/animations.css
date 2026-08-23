@@ -1,0 +1,242 @@
+/* ===========================================================
+   ANIMATIONS & TRANSITIONS
+   Importe este arquivo DEPOIS do index.css:
+   <link rel="stylesheet" href="/css/animations.css" />
+   =========================================================== */
+
+/* ---------- Reduz movimento para quem prefere (acessibilidade) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===========================================================
+   1) REVEAL ON SCROLL
+   Adicione a classe "reveal" em qualquer elemento que deve
+   aparecer suavemente quando entra na tela. O JS (animations.js)
+   adiciona "is-visible" via IntersectionObserver.
+   Modificadores opcionais: reveal--left / reveal--right / reveal--scale
+   =========================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--left {
+  transform: translateX(-32px);
+}
+.reveal--left.is-visible {
+  transform: translateX(0);
+}
+
+.reveal--right {
+  transform: translateX(32px);
+}
+.reveal--right.is-visible {
+  transform: translateX(0);
+}
+
+.reveal--scale {
+  transform: scale(0.94);
+}
+.reveal--scale.is-visible {
+  transform: scale(1);
+}
+
+/* Stagger automático para grids/listas: adicione "reveal-group" no container
+   e "reveal" em cada filho — o JS calcula o delay de cada item. */
+.reveal-group .reveal {
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+/* ===========================================================
+   2) HERO — entrada suave no load (não depende de scroll)
+   =========================================================== */
+.hero-content h1,
+.hero-subtitle,
+.hero-actions {
+  opacity: 0;
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-content h1 {
+  animation-delay: 0.05s;
+}
+.hero-subtitle {
+  animation-delay: 0.2s;
+}
+.hero-actions {
+  animation-delay: 0.35s;
+}
+
+.hero-media {
+  opacity: 0;
+  transform: scale(1.04);
+  animation: heroImageIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===========================================================
+   3) MICRO-INTERAÇÕES — hover mais vivo nos elementos existentes
+   =========================================================== */
+
+/* Botões: leve elevação + escala no hover/active */
+.btn {
+  transition: background 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -14px rgba(22, 50, 79, 0.35);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Cards de áreas de atuação */
+.area-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.area-card:hover {
+  transform: translateY(-6px);
+}
+
+.area-icon {
+  transition: background 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, transform 0.3s ease;
+}
+
+.area-card:hover .area-icon {
+  background: #16324f;
+  color: #ffffff;
+  border-color: #16324f;
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* Diferenciais (já tinham hover; deixamos o ícone acompanhar) */
+.differential-icon {
+  transition: background 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, transform 0.3s ease;
+}
+
+.differential-item:hover .differential-icon {
+  background: #16324f;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+/* Foto "Sobre" — leve zoom no hover */
+.about-photo-wrapper {
+  overflow: hidden;
+}
+
+.about-photo-wrapper img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-photo-wrapper:hover img {
+  transform: scale(1.04);
+}
+
+/* Links de contato */
+.contact-info-list a {
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.contact-info-list a:hover {
+  transform: translateX(3px);
+}
+
+.contact-info-icon {
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.contact-info-list li:hover .contact-info-icon {
+  background: #16324f;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Inputs do formulário: leve "respiro" ao focar */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  transition: border-color 0.2s ease, background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  box-shadow: 0 0 0 3px rgba(22, 50, 79, 0.1);
+}
+
+/* Botão de envio: feedback de clique */
+.form-submit:active {
+  transform: scale(0.98);
+}
+
+/* ===========================================================
+   4) NÚMEROS/DESTAQUES — pequeno "pop" para "60 causas", "STJ e TST" etc.
+   Opcional: envolva o número em <span class="pop"> no HTML.
+   =========================================================== */
+.experience-content strong.pop {
+  display: inline-block;
+  animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
